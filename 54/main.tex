@@ -221,10 +221,11 @@ Which of the following is/are true?
 	\item $E(X|X>0)<\frac{1}{2}$
 	\item $E(X|X>0)>\frac{1}{2}$
 \end{enumerate}
-\solution \\
-As we know,
+\solution 
+\begin{enumerate}
+	\item As we know,
 \begin{align}
-	E(X)&=\sum XP(X)
+	E(X)&=\sum X p_X(X)
 \end{align}
 Therefore,
 \begin{align}
@@ -233,9 +234,9 @@ Therefore,
 	&=e^{-1}\brak{\frac{1}{2}+\frac{1}{2}+\frac{1}{4}+\frac{1}{12}+...}\\
 	&=0.5 \label{eq:gate/2023/st/54/1}
 \end{align}
-To find $E(X|X>0)$, first we need to find $P(X|X>0)$ which can be given as:
+\item To find $E(X|X>0)$, first we need to find $P(X|X>0)$ which can be given as:
 \begin{align}
-	P(X|X>0)&=\frac{P(X=k)}{1-P(X=0)}\\
+	p_X(X|X>0)&=\frac{p_X(X=k)}{1-p_X(X=0)}\\
 	&=\frac{e^{-1}}{2k!(1-\frac{1}{2}\brak{1+e^{-1}})}\\
 	&=\frac{e^{-1}}{k! (1-e^{-1})}\\
 	&=\frac{1}{k!(e-1)}
@@ -246,6 +247,7 @@ Therefore,
 	&= \frac{1}{e-1}\brak{1+1+\frac{1}{2}+\frac{1}{6}+\frac{1}{24}+...}\\
 	&= 1.581 \label{eq:gate/2023/st/54/2}
 \end{align}
+\end{enumerate}
 Refering to equations \eqref{eq:gate/2023/st/54/1} and \eqref{eq:gate/2023/st/54/2}, we get that option (2) and (4) are correct.
 \end{document}
 
