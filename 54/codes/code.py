@@ -1,5 +1,5 @@
 import math
-
+import matplotlib.pyplot as plt
 # Probability mass function for X
 def pmf_X(k):
     if k == 0:
@@ -28,4 +28,7 @@ e_x_given_x_gt_0 = conditional_expected_value_X()
 
 print("E(X) =", e_x)
 print("E(X|X>0) =", e_x_given_x_gt_0)
+
+
+
 

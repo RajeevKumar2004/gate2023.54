@@ -1,49 +1,60 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-
-// Function to compute factorial
-double factorial(int n) {
-    double result = 1.0;
-    for (int i = 1; i <= n; i++) {
-        result *= i;
-    }
-    return result;
-}
-
-// Probability mass function for X
-double pmf_X(int k) {
+#include <time.h>
+double calculate_probability(int k) {
     if (k == 0) {
         return 0.5 * (1 + exp(-1));
     } else {
-        return exp(-1) / (2 * factorial(k));
+        double denominator = 1.0;
+        for (int i = 1; i <= k; i++) {
+            denominator *= i;
+        }
+        return (exp(-1)) / (2 * denominator);
     }
 }
 
-// Expected Value E(X)
-double expected_value_X() {
-    double expected_value = 0;
-    for (int k = 0; k <= 100; k++) { // You can adjust the range for higher values if needed
-        expected_value += k * pmf_X(k);
-    }
-    return expected_value;
-}
+int generate_random_variable() {
+    double rand_num = (double)rand() / RAND_MAX; // Generate a random number between 0 and 1
+    double cumulative_prob = 0.0;
+    int k = 0;
 
-// Conditional Expected Value E(X|X>0)
-double conditional_expected_value_X() {
-    double conditional_expected_value = 0;
-    double denominator = 1 - pmf_X(0);
-    for (int k = 1; k <= 100; k++) { // You can adjust the range for higher values if needed
-        conditional_expected_value += (k * pmf_X(k)) / denominator;
+    while (1) {
+        cumulative_prob += calculate_probability(k);
+        if (rand_num < cumulative_prob) {
+            return k;
+        }
+        k++;
     }
-    return conditional_expected_value;
 }
 
 int main() {
-    double e_x = expected_value_X();
-    double e_x_given_x_gt_0 = conditional_expected_value_X();
+    int num_variables = 1000;
+    int variables[num_variables];
 
-    printf("E(X) = %lf\n", e_x);
-    printf("E(X|X>0) = %lf\n", e_x_given_x_gt_0);
+    srand(time(NULL)); // Seed for random number generation
+
+    for (int i = 0; i < num_variables; i++) {
+        variables[i] = generate_random_variable();
+    }
+
+    double sum_X = 0.0;
+    double sum_X_if_positive = 0.0;
+    int count_positive = 0;
+
+    for (int i = 0; i < num_variables; i++) {
+        sum_X += variables[i];
+        if (variables[i] > 0) {
+            sum_X_if_positive += variables[i];
+            count_positive++;
+        }
+    }
+
+    double E_X = sum_X / num_variables;
+    double E_X_if_positive = sum_X_if_positive / count_positive;
+
+    printf("E(X) = %lf\n", E_X);
+    printf("E(X|X>0) = %lf\n", E_X_if_positive);
 
     return 0;
 }
