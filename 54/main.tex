@@ -221,7 +221,9 @@ Which of the following is/are true?
 	\item $E(X|X>0)<\frac{1}{2}$
 	\item $E(X|X>0)>\frac{1}{2}$
 \end{enumerate}
-\solution 
+\solution
+\begin{enumerate}
+	\item \textbf{Theory:}
 \begin{enumerate}
 	\item As we know,
 \begin{align}
@@ -252,6 +254,24 @@ Therefore,
 \end{align}
 \end{enumerate}
 Refering to equations \eqref{eq:gate/2023/st/54/1} and \eqref{eq:gate/2023/st/54/2}, we get that option (2) and (4) are correct.
+\item \textbf{Simulation:}\\
+To make the simulation of the given question, generate a large set of random variables, say $X$, with the probability:
+\begin{align}
+	P(X=0)&=\frac{1}{2}\brak{1+e^{-1}}\\
+	P(X=k)&=\frac{e^{-1}}{2k!} \; for \; k=1,2,3,... \, .
+\end{align}
+\begin{enumerate}
+	\item To get $E(X)$, take the weighted sum of all possible values of X including $0$, each multiplied by its respective probability. Expression for this can be given as:
+\begin{align}
+	E(X)&=\sum k p_X(k)
+\end{align}
+\item As given in theory, to get $E(X|X>0)$, take the weighted sum of all possible values of $X$ excluding $0$, each multiplied by its respective probability and dividing it by the probability of getting random variables greater than $0$. Expression for this can be given as:
+\begin{align}
+	\pr{X|X>0}&=\frac{\pr{X=k}}{1-\pr{X=0}}\\
+\end{align}
+\end{enumerate}
+
+\end{enumerate}
 \end{document}
 
 
