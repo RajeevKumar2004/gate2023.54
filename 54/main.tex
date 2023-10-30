@@ -260,6 +260,7 @@ To make the simulation of the given question, generate a large set of random var
 	P(X=0)&=\frac{1}{2}\brak{1+e^{-1}}\\
 	P(X=k)&=\frac{e^{-1}}{2k!} \; for \; k=1,2,3,... \, .
 \end{align}
+To do so, initialize a random number generator using a seed, such as the current time, to ensure different sequences of random numbers for each program run. Then, within a loop, you generate a random floating-point number between 0 and 1, denoted by say randomnum. Subsequently, you calculate the cumulative probability of a random variable taking a specific value $k$ by repeatedly comparing randomnum to the cumulative probabilities for increasing values of $k$. The loop continues until the cumulative probability exceeds randomnum. When this condition is met, you return the value of $k$, representing the generated random variable. 
 \begin{enumerate}
 	\item To get $E(X)$, take the weighted sum of all possible values of X including $0$, each multiplied by its respective probability. Expression for this can be given as:
 \begin{align}
