@@ -262,13 +262,12 @@ To make the simulation of the given question, generate a large set of random var
 \end{align}
 To simulate random variables, you kickstart the process by setting the initial conditions for a random number generator, often using the current time to ensure different random sequences each time the program runs. In a loop, you generate a random number between $0$ and $1$. This whole technique is based on a fascinating concept known as Inverse Transform Sampling. According to this theorem, you have a uniform random variable $U \sim Unif(0, 1)$, and you connect it to the distribution you want using 
 \begin{align}
-	X = {F_{X}}^{-1}(U).
+	X = {F_{X}}^{-1}(U) \tag*{($F_{X}$ refers to Cumulative Distribution Function)}.
 \end{align}
  In simpler terms, you're using U to navigate through the distribution's cumulative probabilities to find the corresponding value of X. It link these random numbers to specific distributions and it relies on a key formula: 
 \begin{align}
-k = \frac{-ln(1- random number) }{\lambda}
+	X = {F_{X}}^{-1}(U) = -\frac{ln (1-U)}{\lambda} \tag*{($\lambda$ depends on probability given)}
 \end{align}
-,where $\lambda$ is a crucial parameter for the distribution you're simulating.\\
 Using this method, random number is compared to cumulative probabilities (CDF) for various values of therandom variable $k$ until the CDF exceeds it. This process continues until a match is found and $k$ is returned as the generated random variable.
 \begin{enumerate}
 \item To get $E(X)$, take the weighted sum of all possible values of X including $0$, each multiplied by its respective probability. Expression for this can be given as:
