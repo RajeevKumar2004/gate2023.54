@@ -262,7 +262,7 @@ To make the simulation of the given question, generate a large set of random var
 \end{align}
 In the simulation process, we first start by defining the cumulative distribution function (CDF) for the given random variable X, which is expressed as:
 \begin{align}
-	CDF = F_{X}(x) = \sum_{-\infty}^{x} f_{x}(t)dt \tag*{(Here, $f_{x}$ is probability density function)}
+	CDF = F_{X}(x) = \sum_{x_k \leq x} p_{X}(x_k) \tag*{(Here, $p_{x}$ is probability density function)}
 \end{align}
 Once we have the CDF, we use the concept of Inverse Transform Sampling. This involves generating a uniform random variable U from the range $[0, 1]$ and then inverting the CDF to obtain X. The inversion is done using the formula:
 \begin{align}
