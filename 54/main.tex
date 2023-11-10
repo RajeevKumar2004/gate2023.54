@@ -260,19 +260,15 @@ To make the simulation of the given question, generate a large set of random var
 	P(X=0)&=\frac{1}{2}\brak{1+e^{-1}}\\
 	P(X=k)&=\frac{e^{-1}}{2k!} \; for \; k=1,2,3,... \, .
 \end{align}
-In the simulation process, we first start by defining the cumulative distribution function (CDF) for the given random variable X, which is expressed as:
-\begin{align}
-	CDF = F_{X}(x) = \sum_{x_k \leq x} p_{X}(x_k) \tag*{(Here, $p_{x}$ is probability density function)}
-\end{align}
-Once we have the CDF, we use the concept of Inverse Transform Sampling. This involves generating a uniform random variable U from the range $[0, 1]$ and then inverting the CDF to obtain X. The inversion is done using the formula:
+In the simulation process, we use the concept of Inverse Transform Sampling. This involves generating a uniform random variable U from the range $[0, 1]$ and then inverting the generalized form of CDF, i.e. $F_X$, to obtain X. The inversion is done using the formula:
 \begin{align}
 	X = {F_{X}}^{-1}(U) 
 \end{align}
- In simpler terms, you're using U to navigate through the distribution's cumulative probabilities to find the corresponding value of X. It link these random numbers to specific distributions and it relies on a key formula: 
+Since, this distribution is discrete, we use following method to find the discrete random variable:
 \begin{align}
-	X = {F_{X}}^{-1}(U) = -\frac{ln (1-U)}{\lambda} \tag*{($\lambda$ depends on probability given)}
+	\sum_{j=0}^{k-1}p_X(j) \leq U < \sum_{j=0}^{k}p_X(j)
 \end{align}
-Using this method, random number is compared to cumulative probabilities (CDF) for various values of therandom variable $k$ until the CDF exceeds it. This process continues until a match is found and $k$ is returned as the generated random variable.
+In simpler terms, you're using U to navigate through the distribution's cumulative probabilities to find the corresponding value of $X$ .Using this method, random number is compared to cumulative probabilities (CDF) for various values of the random variable $k$ until the CDF exceeds it. This process continues until a match is found and $k$ is returned as the generated random variable.
 \begin{enumerate}
 \item To get $E(X)$, take the weighted sum of all possible values of X including $0$, each multiplied by its respective probability. Expression for this can be given as:
 \begin{align}
