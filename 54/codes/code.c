@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+
 double calculate_probability(int k) {
     if (k == 0) {
         return 0.5 * (1 + exp(-1));
@@ -34,9 +35,19 @@ int main() {
 
     srand(time(NULL)); // Seed for random number generation
 
+    FILE *file = fopen("rv.dat", "w"); // Open the file for writing
+
+    if (file == NULL) {
+        fprintf(stderr, "Error opening file.\n");
+        return 1;
+    }
+
     for (int i = 0; i < num_variables; i++) {
         variables[i] = generate_random_variable();
+        fprintf(file, "%d\n", variables[i]); // Save the random variable to the file
     }
+
+    fclose(file); // Close the file
 
     double sum_X = 0.0;
     double sum_X_if_positive = 0.0;
